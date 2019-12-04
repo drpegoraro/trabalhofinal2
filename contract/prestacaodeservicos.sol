@@ -24,6 +24,7 @@ contract PrestacaoDeServicos
         ) public
         
         {
+
         prestador = nomePrestador;
         empresa = nomeEmpresa;
         valorHora = valorHoraTrabalho;
@@ -31,7 +32,7 @@ contract PrestacaoDeServicos
         contaPrestador = ncontaprestador;
         contaEmpresa = ncontaempresa;
         }
-    
+        
     function calculoremuneracaoFinal () public view returns (uint remuneracaoFinal)
     {
         remuneracaoFinal = valorHora*horasTrabalhadas;
