@@ -1,36 +1,27 @@
-var contractAddress = "0x557D0Ecd8A9ae210519d1bD9B543723E04941eEe";
+var contractAddress = "0x51fd8D728d1fF3471D8870ba7d767E73f3c34126";
 var provider = new ethers.providers.Web3Provider(web3.currentProvider);
 var signer = provider.getSigner();
 var contract = new ethers.Contract(contractAddress, contractAbi, signer);
 
-function getContractBalance() {    
-    var boxBalance = document.getElementById("boxBalance");
-    console.log("getContractBalance - submitting the request");     
-    contract.getContractBalance()
+function calculoremuneracaoFinal() {    
+    var remuneracaoFinal = document.getElementById("remuneracaoFinal");
+    console.log("remuneracaoFinal - submitting the request");     
+    contract.calculoremuneracaoFinal()
     .then( (resultFromContract) => {
-        console.log("getContractBalance - result is", resultFromContract);
+        console.log("remuneracaoFinal - result is", resultFromContract);
         boxBalance.innerHTML = resultFromContract;
     })
     .catch( (err) => {
         console.error(err);
-        alert("A screen will be load asking to allow this page to connect with your Ethereum account.\nPlease give this permission to proceed.\nOr if you don't have an Ethereum account please install Metamask");
-        ethereum.enable();
-        alert("After you give the permission we are going to reload the page");
-        document.location = "index.html";
     });
 }
 
-function executePayment() {
-    var amount = document.frmPayment.amount.value;       
-    if (amount<1000000000) {
-        alert("You must pay a minimum of 1 gwei to the Contract");
-        return false;
-    }
+function pagto() {
     var motivation = document.frmPayment.motivation.value;
-    var boxCommStatus = document.getElementById("boxCommStatus");
+    var boxCommStatus = document.getElementById("pagto");
     boxCommStatus.innerHTML = "Sending transaction...";
     var additionalSettings = {
-        value: ethers.utils.parseUnits(amount, 'wei')
+        value: ethers.utils.parseUnits(amount)
     }; 
     contract.pay(motivation, additionalSettings)
     .then( (tx) => {
